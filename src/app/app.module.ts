@@ -15,13 +15,15 @@ import { MyApp } from './app.component';
 //pages
 import { ShopListPage } from '../pages/shop-list/shop-list';
 import { AddShopPage } from "../pages/add-shop/add-shop";
+import { EditShopItemPage } from "../pages/edit-shop-item/edit-shop-item";
 
 
 @NgModule({
   declarations: [
     MyApp,
     ShopListPage,
-    AddShopPage
+    AddShopPage,
+    EditShopItemPage
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import { AddShopPage } from "../pages/add-shop/add-shop";
   entryComponents: [
     MyApp,
     ShopListPage,
-    AddShopPage
+    AddShopPage,
+    EditShopItemPage
   ],
   providers: [
     StatusBar,

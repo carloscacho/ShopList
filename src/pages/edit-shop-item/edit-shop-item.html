@@ -6,13 +6,25 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>EditShopItem</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Edit {{shopItem.itemName}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-item>
+    <ion-label floating> Item Name </ion-label>
+    <ion-input type="text" [(ngModel)]="shopItem.itemName"></ion-input>
 
+  </ion-item>
+
+  <ion-item>
+      <ion-label floating> Quant </ion-label>
+      <ion-input type="number" [(ngModel)]="shopItem.itemNumber"></ion-input>
+  
+    </ion-item>
+
+    <button ion-button block (click)="editShopItem(shopItem)"> Edit Item </button>
 </ion-content>

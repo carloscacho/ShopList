@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 //pages
 import { ShopListPage } from '../pages/shop-list/shop-list';
 import { AddShopPage } from "../pages/add-shop/add-shop";
+import { EditShopItemPage } from "../pages/edit-shop-item/edit-shop-item";
 
 
 @Component({

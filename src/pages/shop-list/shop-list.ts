@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, ActionSheetController } from 'ioni
 import { AddShopPage } from "../add-shop/add-shop";
 import { AngularFireDatabase, FirebaseListObservable } from "angularfire2/database";
 import { ShopItem } from "../../models/shop-item";
-
+import { EditShopItemPage} from '../edit-shop-item/edit-shop-item'
 
 @Component({
   selector: 'page-shop-list',
@@ -49,7 +49,11 @@ export class ShopListPage {
         {
           text: 'Edit',
           handler: () => {
+            this.navCtrl.push(EditShopItemPage, {
+              shopItemId:shopItem.$key
+            });
 
+            
           }
         },
         {
