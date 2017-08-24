@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
 import { AddShopPage } from "../add-shop/add-shop";
 import { AngularFireDatabase, FirebaseListObservable } from "angularfire2/database";
 import { ShopItem } from "../../models/shop-item";
@@ -13,31 +13,61 @@ export class ShopListPage {
 
   shopListRef$: FirebaseListObservable<ShopItem[]>
 
-  showThis:boolean = false;
+  showThis: boolean = false;
 
   constructor(public navCtrl: NavController,
-     public navParams: NavParams, private database: AngularFireDatabase) 
-     {
-       //shop list ref at firebase
-       this.shopListRef$ = this.database.list('shop-list');
+    public navParams: NavParams,
+    private database: AngularFireDatabase,
+    private actionSheetCtrl: ActionSheetController) {
+    //shop list ref at firebase
+    this.shopListRef$ = this.database.list('shop-list');
 
-       this.shopListRef$.subscribe(x => console.log(x));
-     }
+    this.shopListRef$.subscribe(x => console.log(x));
+  }
 
-  public navToAddShopPage(){
+  public navToAddShopPage() {
     this.navCtrl.push(AddShopPage);
   }
 
-  public showOrNot(){
-    if(this.showThis){
+  public showOrNot() {
+    if (this.showThis) {
       this.showThis = false;
-    }else{
+    } else {
       this.showThis = true;
     }
   }
 
-  public getShowThis(){
+  public getShowThis() {
     return this.showThis
+  }
+
+  public selectShopItem(shopItem: ShopItem) {
+
+    this.actionSheetCtrl.create({
+      title: `${shopItem.itemName}`,
+      buttons: [
+        {
+          text: 'Edit',
+          handler: () => {
+
+          }
+        },
+        {
+          text: 'Delete',
+          role: 'destructive',
+          handler: () => {
+            //delete
+            this.shopListRef$.remove(shopItem.$key)
+          }
+        }, {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log("The use has selected the cancel button");
+          }
+        }
+      ]
+    }).present();
   }
 
 }
